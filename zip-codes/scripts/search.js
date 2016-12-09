@@ -13,8 +13,17 @@
         rows.forEach(function(a) {
           $('#state-select').append('<option>' + a.state + '</option>');
         });
+        $('#state-select').on('change', function() {
+          webDB.execute('SELECT city FROM zips GROUP BY state;',
+          function(a) {
+            if ($('#city-select').text() === a.state) {
+              $('#city-select').append('<option>' + a.city + '</option>');
+            }
+          });
+        });
       }
     });
+
   };
 
   searchView.populateFilters();
