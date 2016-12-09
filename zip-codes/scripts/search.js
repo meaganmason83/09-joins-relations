@@ -10,11 +10,8 @@
     webDB.execute('SELECT state FROM zips GROUP BY state;',
     function(rows) {
       if (rows.length) {
-        console.log(rows);
-      $('state-select').
-      } else {
-        $.getJSON('../../data/zips.json', function() {
-
+        rows.forEach(function(a) {
+          $('#state-select').append('<option>' + a.state + '</option>');
         });
       }
     });
