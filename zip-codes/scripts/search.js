@@ -35,6 +35,10 @@
       var input = $('input[name="zip"]').val();
       webDB.execute('SELECT latitude, longitude FROM zips WHERE zip="'+ input +'"',
         function(cord) {
+          if (!cord.length) {
+            return console.log('Please enter a non-bumfuck zipcode');
+          }
+          //console.log(cord);
           var latitude = cord[0].latitude;
           var longitude = cord[0].longitude;
           var mapObject = {lat: latitude, lng: longitude};
