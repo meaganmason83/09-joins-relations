@@ -33,13 +33,12 @@
     $('form').submit(function(e) {
       e.preventDefault();
       var input = $('input[name="zip"]').val();
-      console.log(input);
-      webDB.execute('SELECT latitude, longitude FROM zips WHERE zip= ' + input + '',
-        function(zip) {
-          console.log(zip.latitude + ',' + zip.longitdude);
-            //document.getElementsByTagName('label')
-          //  console.log(z);
-          //});
+      webDB.execute('SELECT latitude, longitude FROM zips WHERE zip="'+ input +'"',
+        function(cord) {
+          var latitude = cord[0].latitude;
+          var longitude = cord[0].longitude;
+          var mapObject = {lat: latitude, lng: longitude};
+          initMap(mapObject);
         });
     });
   };
