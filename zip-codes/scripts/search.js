@@ -36,7 +36,7 @@
       console.log(input);
       webDB.execute('SELECT latitude, longitude FROM zips WHERE zip= ' + input + '',
         function(zip) {
-          //zip.forEach(function(z) {
+          console.log(zip.latitude + ',' + zip.longitdude);
             //document.getElementsByTagName('label')
           //  console.log(z);
           //});
