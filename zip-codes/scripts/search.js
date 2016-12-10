@@ -4,8 +4,8 @@
 
   var searchView = {};
 
-  // TODO: Write the code to populate your filters, and enable the search queries here in search.js
-  // TODO: You will also interact with the map.js file here
+  // TODO: DONE. Write the code to populate your filters, and enable the search queries here in search.js
+  // TODO: DONE. You will also interact with the map.js file here
   searchView.populateState = function() {
     webDB.execute('SELECT state FROM zips GROUP BY state;',
     function(rows) {
@@ -29,8 +29,23 @@
     });
   };
 
+  searchView.zipSearch = function() {
+    $('form').submit(function(e) {
+      e.preventDefault();
+      var input = $('input[name="zip"]').val();
+      console.log(input);
+      webDB.execute('SELECT latitude, longitude FROM zips WHERE zip= ' + input + '',
+        function(zip) {
+          //zip.forEach(function(z) {
+            //document.getElementsByTagName('label')
+          //  console.log(z);
+          //});
+        });
+    });
+  };
 
   searchView.populateState();
   searchView.populateCity();
+  searchView.zipSearch();
 
 })(window);
