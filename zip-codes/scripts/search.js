@@ -19,11 +19,14 @@
 
   searchView.populateCity = function(state) {
     $('#state-select').on('change', function() {
+      $('#city-select option').first().siblings().remove();
       webDB.execute('SELECT DISTINCT city FROM zips WHERE state = "' + $(this).val() + '"',
       function(a) {
         a.forEach(function(ele) {
           $('#city-select').append('<option>' + ele.city + '</option>');
+
         });
+
       }
     );
     });
